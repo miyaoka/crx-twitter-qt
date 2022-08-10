@@ -1,8 +1,8 @@
 {
   "extName": {
-    "message": "title"
+    "message": "twitter quote remover"
   },
   "extDescription": {
-    "message": "desc"
+    "message": "Remove quote from Quote Tweets"
   }
 }

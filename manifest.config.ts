@@ -13,12 +13,9 @@ export default defineManifest(() => {
       "48": "icons/icon.png",
       "128": "icons/icon.png",
     },
-    action: {
-      default_popup: "popup.html",
-    },
     content_scripts: [
       {
-        matches: ["https://*/*"],
+        matches: ["https://*.twitter.com/*"],
         js: ["./src/content-scripts/main.ts"],
       },
     ],

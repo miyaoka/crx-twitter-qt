@@ -1,8 +1,8 @@
 {
-  "name": "crx-miyaoka-template",
+  "name": "crx-twitter-qt",
   "private": true,
   "version": "1.0.0",
-  "description": "description here.",
+  "description": "Remove quote from Quote Tweets",
   "author": "Masaya Kazama <miyan@t-p.jp>",
   "license": "MIT",
   "scripts": {
