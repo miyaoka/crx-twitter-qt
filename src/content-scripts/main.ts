@@ -1,27 +1,29 @@
 // https://twitter.com/USER-ID/status/TWEET-ID/retweets/with_comments
 const qtPathRegex = new RegExp("^/[^/]+/status/\\d+/retweets/with_comments");
 
-const qtSelector = "[data-testid=tweet]";
-const quoteInQtSelector = "[aria-labelledby]";
+const style = document.createElement("style");
+document.body.appendChild(style);
 
-const removeQuoteInComments = () => {
-  if (!qtPathRegex.test(location.pathname)) return;
+let pathname = "";
 
-  const qtList = Array.from(document.querySelectorAll(qtSelector));
-  qtList.forEach((qt) => {
-    const quote = qt.querySelector<HTMLElement>(quoteInQtSelector);
-    if (!quote) return;
-    if (quote.style.display === "none") return;
-    quote.style.display = "none";
-  });
+const onLongtask = () => {
+  if (pathname === location.pathname) return;
+  pathname = location.pathname;
+
+  onChangePath(pathname);
+};
+
+const onChangePath = (pathname: string) => {
+  const isQtPath = qtPathRegex.test(pathname);
+
+  style.innerText = isQtPath
+    ? `[data-testid=tweet] [aria-labelledby]{ display: none; }`
+    : "";
 };
 
 new PerformanceObserver(() => {
-  removeQuoteInComments();
+  onLongtask();
 }).observe({
-  entryTypes: ["largest-contentful-paint", "longtask"],
-});
-
-document.addEventListener("scroll", () => {
-  removeQuoteInComments();
+  type: "longtask",
+  buffered: true,
 });
