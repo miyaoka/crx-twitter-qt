@@ -17,7 +17,7 @@ const onChangePath = (pathname: string) => {
   const isQtPath = qtPathRegex.test(pathname);
 
   style.innerText = isQtPath
-    ? `[data-testid=tweet] [aria-labelledby]{ display: none; }`
+    ? `[data-testid=tweet] [aria-labelledby] [id]{ display: none; }`
     : "";
 };
 
